@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCCPRO - Login</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" href="../static/style.css">    
+</head>
+<body>
+    <div class="Titulo">
+        <h1>TCC Pro</h1>
+    </div>
+    <form action="/ProcessLogin" method="post">
+        <div class="Login">
+            <input type="text" name="user" class="user" placeholder="Usuário" required>
+            <input type="text" name="password" class="password" placeholder="Senha" required>
+            <button id="LoginBtn" type="submit">Login</button>
+        </div>
+    </form>
+
+    <form action="/registro">
+        <button type="submit">Não possui uma conta? Registre-se!</button>
+    </form>
+</body>
+</html>
