@@ -1,16 +1,17 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class FormController {
 
-    BCryptPasswordEncoder PassEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private UsuarioService usuarioService;
 
     @GetMapping("/index")
     public String mostrarForm() {
@@ -31,9 +32,6 @@ public class FormController {
 
     @PostMapping("/registro")
     public String showRegistro(@RequestParam String Usuario, @RequestParam String CPF, @RequestParam String dataNasc, @RequestParam String Email, @RequestParam String password, @RequestParam String password2, RedirectAttributes redirectAttributes) {
-        
-        // Encriptação da senha!
-        String senhaHash = PassEncoder.encode(password2);
 
         // Verificando se a senha coincide!
         // Caso negativo vai enviar um GET para o HTML que vai imprimir uma escrita com base
@@ -48,7 +46,10 @@ public class FormController {
         System.out.println("CPF: " + CPF);
         System.out.println("Data de Nascimento: " + dataNasc);
         System.out.println("Email: " + Email);
-        System.out.println("Hash da senha: " + senhaHash);
+        System.out.println("Hash da senha: " + password);
+        
+        usuarioService.registrarUsuario(Usuario, CPF, dataNasc, Email, password);
+        
         return "sucessoReg";
     }
     
