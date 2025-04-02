@@ -5,12 +5,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+// Classe basicamente formada de getters e setter para poder enviar os dados
+// para as outras classes que as requisitam
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
     @Id
     @GeneratedValue
-    private Long id;  // Changed from long to Long for better JPA compatibility
+    private Long id; 
 
     private String nome;
     private String cpf;
@@ -53,7 +55,7 @@ public class Usuario {
         return dataNasc;
     }
 
-    public void setDataNasc(String dataNasc) {  // Fixed: now void return type
+    public void setDataNasc(String dataNasc) {
         this.dataNasc = dataNasc;
     }
 
