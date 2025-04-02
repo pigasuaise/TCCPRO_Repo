@@ -15,10 +15,10 @@ public class UsuarioService {
 
     @Transactional
     public void registrarUsuario(String nome, String cpf, String dataNasc, String email, String senha) {
-        // 1. Hash the password
+        // Hasha a senha
         String senhaHash = passwordEncoder.encode(senha);
         
-        // 2. Create and populate user
+        // Cria e popula a tabela
         Usuario usuario = new Usuario();
         usuario.setNome(nome);
         usuario.setCpf(cpf);
@@ -26,7 +26,7 @@ public class UsuarioService {
         usuario.setEmail(email);
         usuario.setSenhaHash(senhaHash);
         
-        // 3. Save to database
+        // salva no banco de dados
         usuarioRepository.save(usuario);
     }
 }
